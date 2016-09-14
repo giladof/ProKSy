@@ -63,7 +63,6 @@ public class ProKSy {
 	
 	protected static boolean canStart = false;
 	public static Run thread =null;
-	//protected static boolean toStop = false;
 	
 	static JTable tblLog;
 	static JTable tblTraffic;
@@ -138,8 +137,10 @@ public class ProKSy {
 				
 		// missing data border
 		final Border border = BorderFactory.createLineBorder(Color.RED);
+		
 		// missing KeyStore password border (not mandatory)
 		final Border borderWarning = BorderFactory.createLineBorder(Color.ORANGE);
+		
 		// default border
 		frame.getContentPane().add(tabMain);
 		tabMain.setBounds(0, 0, 440, 200);
@@ -164,9 +165,7 @@ public class ProKSy {
         tblLog.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
         tblLog.getColumnModel().getColumn(0).setPreferredWidth(15);
         tblLog.getColumnModel().getColumn(1).setPreferredWidth(295);
-        tblLog.getColumnModel().getColumn(2).setPreferredWidth(120);
-        //JScrollPane scrollPaneLog = new JScrollPane(tblLog, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		
+        tblLog.getColumnModel().getColumn(2).setPreferredWidth(120);		
         
 		frame.addComponentListener(new ComponentAdapter() {
             public void componentResized(ComponentEvent e) {
@@ -522,7 +521,7 @@ public class ProKSy {
 				    	tabMain.setSelectedIndex(3);
 					}
 	            } else {
-	            	//System.out.println("Open command cancelled by user." + "\n");
+	            	//Open command cancelled by user
 	            }
 	            if (txtKSPath.getText().length() < 1)
 					btnSelectKS.setBorder(border);
@@ -588,7 +587,6 @@ public class ProKSy {
 				
 				if (txtKSPass.getText().length() < 1 ){
 					txtKSPass.setBorder(borderWarning);
-					//canStart = false;
 				}
 				else  {pw = txtKSPass.getText(); }	
 				
@@ -624,6 +622,7 @@ public class ProKSy {
 					}
 			}
 		});
+		
 		//stop!!
 		menuStop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -825,7 +824,6 @@ public class ProKSy {
 		
 		frame.setJMenuBar(menuBar);
 		frame.pack();
-		//System.out.println(canStart);
 		return canStart;
 	}
 
@@ -932,7 +930,6 @@ public class ProKSy {
 			}
 		}
 	}
-	
 	
 	
 	public static void main(String[] args) throws Exception{
