@@ -85,8 +85,7 @@ public class ProKSy {
 	// Build UI
 	public static boolean init() {
 		// icon for ABOUT
-		URL img=null;
-		img = ProKSy.class.getResource(BIG_LOGO);
+		URL img = ProKSy.class.getResource(BIG_LOGO);
         final ImageIcon icon = new ImageIcon(img);
         
 		DefaultTableModel model = new DefaultTableModel();
@@ -147,25 +146,25 @@ public class ProKSy {
 		
 		// traffic		
 		modeltr.addColumn("");
-        modeltr.addColumn("Message");
-        modeltr.addColumn("From");
-        modeltr.addColumn("To");
-        modeltr.addColumn("Time");
-        tblTraffic.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-        tblTraffic.getColumnModel().getColumn(0).setPreferredWidth(15);
-        tblTraffic.getColumnModel().getColumn(1).setPreferredWidth(151);
-        tblTraffic.getColumnModel().getColumn(2).setPreferredWidth(73);
-        tblTraffic.getColumnModel().getColumn(3).setPreferredWidth(73);
-        tblTraffic.getColumnModel().getColumn(4).setPreferredWidth(120);
+		modeltr.addColumn("Message");
+		modeltr.addColumn("From");
+		modeltr.addColumn("To");
+		modeltr.addColumn("Time");
+		tblTraffic.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		tblTraffic.getColumnModel().getColumn(0).setPreferredWidth(15);
+		tblTraffic.getColumnModel().getColumn(1).setPreferredWidth(151);
+		tblTraffic.getColumnModel().getColumn(2).setPreferredWidth(73);
+		tblTraffic.getColumnModel().getColumn(3).setPreferredWidth(73);
+		tblTraffic.getColumnModel().getColumn(4).setPreferredWidth(120);
 		
-        //log
+		//log
 		model.addColumn("");
-        model.addColumn("Message");
-        model.addColumn("Time");
-        tblLog.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-        tblLog.getColumnModel().getColumn(0).setPreferredWidth(15);
-        tblLog.getColumnModel().getColumn(1).setPreferredWidth(295);
-        tblLog.getColumnModel().getColumn(2).setPreferredWidth(120);		
+		model.addColumn("Message");
+		model.addColumn("Time");
+		tblLog.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		tblLog.getColumnModel().getColumn(0).setPreferredWidth(15);
+		tblLog.getColumnModel().getColumn(1).setPreferredWidth(295);
+		tblLog.getColumnModel().getColumn(2).setPreferredWidth(120);		
         
 		frame.addComponentListener(new ComponentAdapter() {
             public void componentResized(ComponentEvent e) {
@@ -197,8 +196,8 @@ public class ProKSy {
 					txtReqFind.setBorder(border);
 			}
 		});
+		
 		txtReqFind.getDocument().addDocumentListener(new DocumentListener() {
-
 			  public void insertUpdate(DocumentEvent e) {
 				  if (txtReqFind.getText() != null && txtReqFind.getText().compareTo("") !=0)
 					  cf = txtReqFind.getText();
@@ -235,7 +234,6 @@ public class ProKSy {
 		lblReqRep.setBounds(265, 75, 75, 16);
 		panMR.add(lblReqRep);
 		
-		
 		txtReqRep.setBounds(300, 73, 130, 20);
 		panConf.add(txtReqRep);
 		txtReqRep.setColumns(10);
@@ -248,8 +246,8 @@ public class ProKSy {
 					txtReqRep.setBorder(borderWarning);
 			}
 		});
+		
 		txtReqRep.getDocument().addDocumentListener(new DocumentListener() {
-
 			  public void insertUpdate(DocumentEvent e) {
 				  if (txtReqFind.getText() != null && txtReqFind.getText().compareTo("") !=0)
 					  cr = txtReqRep.getText();
@@ -306,14 +304,14 @@ public class ProKSy {
 					txtResFind.setBorder(border);
 			}
 		});
+		
 		txtResFind.getDocument().addDocumentListener(new DocumentListener() {
-
-			  public void insertUpdate(DocumentEvent e) {
-				  if (txtResFind.getText() != null && txtResFind.getText().compareTo("") !=0)
-					  sf = txtResFind.getText();
-				  else
-					  sf = "";
-			  }
+			public void insertUpdate(DocumentEvent e) {
+			  if (txtResFind.getText() != null && txtResFind.getText().compareTo("") !=0)
+				  sf = txtResFind.getText();
+			  else
+				  sf = "";
+			}
 			@Override
 			public void changedUpdate(DocumentEvent arg0) {
 				  if (txtResFind.getText() != null && txtResFind.getText().compareTo("") !=0)
@@ -350,14 +348,14 @@ public class ProKSy {
 					txtResRep.setBorder(borderWarning);
 			}
 		});
+		
 		txtResRep.getDocument().addDocumentListener(new DocumentListener() {
-
-			  public void insertUpdate(DocumentEvent e) {
-				  if (txtResFind.getText() != null && txtResFind.getText().compareTo("") !=0)
-					  sr = txtResRep.getText();
-				  else
-					  sr = "";
-			  }
+			public void insertUpdate(DocumentEvent e) {
+				if (txtResFind.getText() != null && txtResFind.getText().compareTo("") !=0)
+					sr = txtResRep.getText();
+				else
+					sr = "";
+			}
 			@Override
 			public void changedUpdate(DocumentEvent arg0){
 				  if (txtResFind.getText() != null && txtResFind.getText().compareTo("") !=0)
@@ -759,7 +757,6 @@ public class ProKSy {
 		menu.add(menuExit);		
 		
 		// settings options
-		
 		// clear log option
 		JMenuItem menuClearLog = new JMenuItem("Clear Log");
 		conf.add(menuClearLog);
@@ -830,7 +827,7 @@ public class ProKSy {
 	// sending message to remote host
 	static String SendMsgServerString(String msgSend,String Remote,int port) {
 		try{
-		    SimpleDateFormat time_formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		  SimpleDateFormat time_formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			DefaultTableModel modeltr = (DefaultTableModel) ProKSy.tblTraffic.getModel();
 			SSLSocket sslsocket=null;
 			PrintWriter outToServer=null;
@@ -841,17 +838,17 @@ public class ProKSy {
 			sslsocket = (SSLSocket) sslsocketfactory.createSocket(Remote, port);
 			outToServer = new PrintWriter(new OutputStreamWriter(sslsocket.getOutputStream()));
 
-	        outToServer.print(msgSend + '\n');
-	        String current_time_str = time_formatter.format(System.currentTimeMillis());
-			modeltr.addRow(new Object[]{"<-", msgSend, sslsocket.getLocalSocketAddress().toString().replace("/",""), sslsocket.getRemoteSocketAddress().toString().replace("/",""), current_time_str});
-	        outToServer.flush();
-	    	
-	    	answer = readAll(sslsocket);
-		    sslsocket.close();
-
-			current_time_str = time_formatter.format(System.currentTimeMillis());
-			modeltr.addRow(new Object[]{"->", answer, sslsocket.getRemoteSocketAddress().toString().replace("/",""), sslsocket.getLocalSocketAddress().toString().split("/")[1], current_time_str});
-			return answer;
+      outToServer.print(msgSend + '\n');
+      String current_time_str = time_formatter.format(System.currentTimeMillis());
+      modeltr.addRow(new Object[]{"<-", msgSend, sslsocket.getLocalSocketAddress().toString().replace("/",""), sslsocket.getRemoteSocketAddress().toString().replace("/",""), current_time_str});
+      outToServer.flush();
+      
+      answer = readAll(sslsocket);
+      sslsocket.close();
+      
+      current_time_str = time_formatter.format(System.currentTimeMillis());
+      modeltr.addRow(new Object[]{"->", answer, sslsocket.getRemoteSocketAddress().toString().replace("/",""), sslsocket.getLocalSocketAddress().toString().split("/")[1], current_time_str});
+      return answer;
 		}
 		catch (IOException e) {
 			SimpleDateFormat time_formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -866,15 +863,15 @@ public class ProKSy {
 	public static String readAll(SSLSocket socket) throws IOException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		StringBuilder sb = new StringBuilder();
-	   try{
-		sb.append( reader.readLine());
-	   }
-	   catch(Exception e){
+	  try{
+		  sb.append( reader.readLine());
+	  }
+	  catch(Exception e){
 		   SimpleDateFormat time_formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		   DefaultTableModel model = (DefaultTableModel) ProKSy.tblLog.getModel();
 		   String current_time_str = time_formatter.format(System.currentTimeMillis());
 		   model.addRow(new Object[]{"?", e, current_time_str});
-	   }
+	  }
 		return sb.toString();
 	 }
 	
