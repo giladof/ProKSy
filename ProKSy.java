@@ -13,7 +13,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,7 +21,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.URISyntaxException;
+import java.net.URL;
 import java.net.UnknownHostException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
@@ -31,7 +30,6 @@ import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 import java.text.SimpleDateFormat;
 
-import javax.imageio.ImageIO;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import javax.swing.BorderFactory;
@@ -88,20 +86,8 @@ public class ProKSy {
 	// Build UI
 	public static boolean init() {
 		// icon for ABOUT
-		BufferedImage img=null;
-		try {
-			img = ImageIO.read(new File(ProKSy.class.getResource(BIG_LOGO).toURI()));
-		} catch (IOException e) {
-			SimpleDateFormat time_formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			DefaultTableModel model = (DefaultTableModel) ProKSy.tblLog.getModel();
-			String current_time_str = time_formatter.format(System.currentTimeMillis());
-	    	model.addRow(new Object[]{"?", e, current_time_str});
-		} catch (URISyntaxException e1) {
-			SimpleDateFormat time_formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			DefaultTableModel model = (DefaultTableModel) ProKSy.tblLog.getModel();
-			String current_time_str = time_formatter.format(System.currentTimeMillis());
-	    	model.addRow(new Object[]{"?", e1, current_time_str});
-		}
+		URL img=null;
+		img = ProKSy.class.getResource(BIG_LOGO);
         final ImageIcon icon = new ImageIcon(img);
         
 		DefaultTableModel model = new DefaultTableModel();
@@ -145,7 +131,7 @@ public class ProKSy {
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(ProKSy.class.getResource(SMALL_LOGO)));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane();
-		Dimension d = new Dimension(475,250);
+		Dimension d = new Dimension(475,260);
 		frame.setPreferredSize(d);
 		frame.setVisible(true);
 		frame.setMinimumSize(d);
@@ -699,7 +685,6 @@ public class ProKSy {
 			public void actionPerformed(ActionEvent e) {
 				SimpleDateFormat time_formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 				DefaultTableModel model = (DefaultTableModel) ProKSy.tblLog.getModel();
-				//File f = new File("ProKSy.properties");
 				try (BufferedReader br = new BufferedReader(new FileReader("ProKSy.properties"))) {
 				    String line;
 				    while ((line = br.readLine()) != null) {
@@ -748,7 +733,7 @@ public class ProKSy {
 				SimpleDateFormat time_formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 				DefaultTableModel model = (DefaultTableModel) ProKSy.tblLog.getModel();
 				try {
-					PrintWriter writer = new PrintWriter("ProKSy.properties");
+					PrintWriter writer = new PrintWriter(new File("ProKSy.properties").getPath());
 					writer.println("LocalHost="+txtLocalHost.getText());
 					writer.println("LocalPort="+txtLocalPort.getText());
 					writer.println("RemoteHost="+txtRemoteHost.getText());
